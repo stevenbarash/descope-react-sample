@@ -3,6 +3,7 @@ import { useDescope, useSession, useUser } from '@descope/react-sdk';
 import { Descope } from '@descope/react-sdk';
 import { getSessionToken } from '@descope/react-sdk';
 
+const flowId = import.meta.env.VITE_DESCOPE_FLOW_ID;
 const App = () => {
   const { isAuthenticated, isSessionLoading } = useSession();
   const { user, isUserLoading } = useUser();
@@ -30,7 +31,7 @@ const App = () => {
     <div style={{ maxWidth: 600, margin: '0 auto', padding: 32, textAlign: 'center' }}>
       {!isAuthenticated && (
         <Descope
-          flowId="sign-up-or-in-email-or-phone-input"
+          flowId={flowId}
           onSuccess={(e) => console.log(e.detail.user)}
           onError={() => console.log('Could not log in!')}
         />
